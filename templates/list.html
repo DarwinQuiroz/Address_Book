@@ -1,0 +1,31 @@
+<div class="view-header">
+	<h1>Lista de Contactos</h1>
+	<a ng-click="goForm('add')" class="btn-plus btn-title" title="Crear nuevo contacto">
+		<i class="fa fa-plus-square fa-2x" aria-hidden="true"></i>
+	</a>
+</div>
+
+<div class="list-wrapper">
+	<ul>
+		<li ng-repeat="contact in contacts" list_ready_directive="layoutDone()">
+			<div class="contact-data">
+				{{ contact.first_name }} {{ contact.last_name }} - {{ contact.country }}
+			</div>
+
+			<div class="contact-mail">
+				<a ng-click="goForm(contact.id)" title="Editar contacto"><i class="fa fa-pencil btn-edit"></i></a>
+				<a href="mailto:{{ contact.email }}" title="Enviar correo a contacto"><i class="fa fa-envelope-o fa-2x btn-mail"></i></a>
+			</div>
+		</li>
+	</ul>
+</div>
+
+<div class="button-bar scroll-bar">
+	<a href="" class="btn-down" ng-mousedown="btn_scroll_down(2)" ng-mouseup="btn_scroll_up()"  title="Scroll down">
+	    <i class="fa fa-chevron-circle-down fa-2x btn_scroll"></i>
+	</a>
+	<a href="" class="btn-up" ng-mousedown="btn_scroll_down(-2)" ng-mouseup="btn_scroll_up()"  title="Scroll up">
+	    <i class="fa fa-chevron-circle-up fa-2x btn_scroll"></i>
+	</a>
+</div>
+

@@ -1,0 +1,38 @@
+<div class="view-header">
+	<h1>Contacto</h1>
+	<a class="btn-list btn-title" ng-click="goList()" title="Ir hacia la lista de contactos">
+		<i class="fa fa-list fa-2x" aria-hidden="true"></i>
+	</a>
+</div>
+
+<form id="form_contact" name="form_contact" ng-cloak>
+	<div class="form-group" >
+        <input placeholder="Primer nombre" name="first_name" type="text" maxlength="36" ng-model="contact.first_name" required>
+        <p ng-show="form_contact.first_name.$error.required && form_contact.first_name.$touched" class="error-block">El primer nombre es requerido.</p>
+    </div>
+
+	<div class="form-group">
+		<input type="text" placeholder="Apellidos" name="last_name" maxlength="50" ng-model="contact.last_name" required>
+		<p ng-show="form_contact.last_name.$error.required && form_contact.last_name.$touched" class="error-block">El apellido es requerido.</p>
+	</div>
+
+	<div class="form-group">
+		<input type="email" placeholder="Correo" name="email" ng-model="contact.email" required>	
+		<p ng-show="form_contact.email.$error.required && form_contact.email.$touched" class="error-block">El correo es requerido.</p>
+		<p ng-show="form_contact.email.$error.email && form_contact.email.$touched" class="error-block">Debe ingresar un correo valido.</p>
+	</div>
+
+	<div class="styled-select">
+		<select name="country" ng-model="contact.country" required>
+			<option value="" disabled selected>Seleccione su país</option>
+			<option ng-repeat="code in countries.getCodes()" value="{{code}}">{{countries.getName(code)}}</option>
+		</select>
+	</div>
+	<p ng-show="form_contact.country.$error.required && form_contact.country.$touched" class="error-block">El país es requerido</p>
+
+	<div class="button-bar">
+		<button name="btn-add" ng-click="add()" ng-show="new && form_contact.$valid" title="Guardar nuevo contacto">Agregar <i class="fa fa-floppy-o"></i></button>
+		<button name="btn-edit" ng-click="update()" ng-show="!new && form_contact.$valid" title="Editar contacto">Editar <i class="fa fa-pencil"></i></button>
+		<button name="btn-delete" ng-click="delete()" ng-show="!new" title="Eliminar contacto">Eliminar <i class="fa fa-trash"></i></button>
+	</div>
+</form>
